@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengetahuan Hari Demi Hari</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px; /* Padding keseluruhan body */
+            line-height: 1.6;
+            box-sizing: border-box; /* Pastikan padding dan border tidak menambah lebar total */
+        }
+        *, *:before, *:after {
+            box-sizing: inherit; /* Wariskan box-sizing ke semua elemen */
+        }
+
+        #initialView {
+            position: relative;
+            min-height: calc(100vh - 40px); /* 40px adalah 2x padding body */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center; /* Pusatkan teks di initialView */
+        }
+        #initialView h1 {
+            color: #ffffff;
+            margin-top: 0;
+            font-size: 2em; /* Ukuran font responsif */
+        }
+        #initialView .content-center {
+             width: 100%; /* Agar bisa menggunakan text-align center */
+        }
+        #initialView p.knowledge-link-container {
+            font-size: 1.2em;
+            margin-bottom: 60px; /* Jarak dari footer credit */
+        }
+        .clickable-link {
+            color: #64b5f6;
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .clickable-link:hover {
+            color: #2196f3;
+        }
+        .footer-credit {
+            position: fixed;
+            bottom: 15px;
+            left: 15px;
+            font-size: 0.85em;
+            color: #757575;
+            z-index: 100; /* Pastikan tetap di atas */
+        }
+        #detailView {
+            display: none;
+            background-color: #1e1e1e;
+            padding: 20px; /* Padding konsisten */
+            padding-top: 45px; /* Ruang untuk tombol close */
+            border-radius: 8px;
+            margin-top: 0; /* Hapus margin-top jika body sudah punya padding */
+            position: relative;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2em;
+            color: #aaaaaa;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0 5px;
+            z-index: 10; /* Pastikan di atas konten lain dalam detailView */
+        }
+        .close-button:hover {
+            color: #ffffff;
+        }
+        #detailView h2, #detailView h3 {
+            color: #ffffff;
+            padding-bottom: 5px;
+            word-wrap: break-word; /* Agar judul panjang juga wrap */
+            overflow-wrap: break-word;
+        }
+        #detailView h2 {
+           border-bottom: 2px solid #64b5f6;
+           font-size: 1.5em; /* Ukuran font responsif */
+        }
+         #detailView h3 {
+           font-size: 1.2em; /* Ukuran font responsif */
+        }
+        #detailView p, #detailView ul, #detailView ol {
+            word-wrap: break-word; /* Memastikan teks paragraf dan list juga wrap */
+            overflow-wrap: break-word;
+        }
+        #detailView ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        #detailView ul li {
+            margin-bottom: 10px;
+        }
+        #detailView ol {
+            padding-left: 20px; /* Atur padding agar nomor tidak terlalu menjorok */
+        }
+        #detailView ol li {
+            margin-bottom: 10px; /* Sedikit lebih banyak spasi antar link */
+        }
+        #detailView a {
+            color: #81d4fa;
+            /* Properti penting untuk word wrapping pada link */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            /* word-break: break-all;  Opsi yang lebih 'keras', jika diperlukan */
+            display: inline; /* Biarkan link mengalir dengan teks sekitarnya jika perlu,
+                                 atau display: block jika ingin setiap link di baris baru (sudah karena di dalam li) */
+        }
+        #detailView a:hover {
+            color: #4fc3f7;
+            text-decoration: none;
+        }
+
+        /* Media Queries untuk penyesuaian di layar kecil */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px; /* Kurangi padding body di layar kecil */
+            }
+            #initialView h1 {
+                font-size: 1.8em;
+            }
+            #detailView {
+                padding: 15px;
+                padding-top: 40px;
+            }
+            #detailView h2 {
+                font-size: 1.3em;
+            }
+            #detailView h3 {
+                font-size: 1.1em;
+            }
+            .footer-credit {
+                font-size: 0.8em;
+                bottom: 10px;
+                left: 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="initialView">
+        <div class="content-center">
+            <h1>PENGETAHUAN HARI DEMI HARI</h1>
+            <p class="knowledge-link-container"><span class="clickable-link" onclick="showKnowledge()">PENGETAHUAN 1!</span></p>
+        </div>
+        <div class="footer-credit">made by LUBAR</div>
+    </div>
+
+    <div id="detailView">
+        <span class="close-button" onclick="showInitialScreen()">×</span>
+        <p>Berikut adalah satu pengetahuan penting untuk hari ini, 22 Mei 2025:</p>
+        <h2>Hari Ini dalam Sejarah: Penemuan Kromosom Manusia yang Benar</h2>
+        <p>
+            Meskipun bukan tepat pada tanggal 22 Mei, namun bulan Mei memiliki signifikansi dalam sejarah penemuan jumlah kromosom manusia yang benar. Selama beberapa dekade di awal abad ke-20, para ilmuwan percaya bahwa manusia memiliki 48 kromosom. Namun, pada tahun 1955, seorang ilmuwan Indonesia bernama Joe Hin Tjio, yang bekerja di Swedia bersama Albert Levan, berhasil membuktikan melalui teknik yang lebih baik bahwa jumlah kromosom manusia yang sebenarnya adalah 46.
+        </p>
+        <p>
+            Penemuan ini, yang dipublikasikan pada bulan Januari 1956, merupakan tonggak penting dalam genetika manusia. Mengetahui jumlah kromosom yang tepat membuka jalan bagi pemahaman yang lebih mendalam tentang:
+        </p>
+        <ul>
+            <li><strong>Kelainan Genetik:</strong> Banyak kondisi genetik, seperti Sindrom Down (Trisomi 21), Sindrom Klinefelter (XXY), dan Sindrom Turner (X0), disebabkan oleh jumlah kromosom yang tidak normal. Pengetahuan akan jumlah 46 kromosom menjadi dasar untuk mengidentifikasi dan memahami kelainan-kelainan ini.</li>
+            <li><strong>Pewarisan Sifat:</strong> Kromosom adalah pembawa materi genetik (DNA) yang menentukan sifat-sifat kita. Memahami jumlah dan struktur kromosom membantu menjelaskan bagaimana sifat diwariskan dari orang tua kepada anak.</li>
+            <li><strong>Perkembangan Manusia:</strong> Jumlah kromosom yang benar sangat krusial untuk perkembangan normal manusia.</li>
+            <li><strong>Penelitian Genetika Modern:</strong> Penemuan ini menjadi landasan bagi berbagai penelitian genetika selanjutnya, termasuk Proyek Genom Manusia dan pengembangan teknologi rekayasa genetika.</li>
+        </ul>
+        <h3>Mengapa ini penting untuk hari ini?</h3>
+        <p>
+            Mengingat kontribusi Joe Hin Tjio ini mengingatkan kita akan pentingnya ketelitian, inovasi dalam metode ilmiah, dan bagaimana penemuan mendasar seperti ini terus berdampak pada ilmu pengetahuan dan kesehatan hingga saat ini. Setiap kemajuan dalam diagnosis dan pengobatan penyakit genetik modern berakar dari pemahaman fundamental tentang jumlah kromosom kita. Ini juga menyoroti kontribusi ilmuwan dari berbagai belahan dunia, termasuk Indonesia, dalam kemajuan ilmu pengetahuan global.
+        </p>
+        <p>
+            Jadi, hari ini, mari kita ingat bahwa pemahaman kita tentang diri kita sendiri, hingga ke tingkat seluler, adalah hasil dari kerja keras dan penemuan brilian para ilmuwan di masa lalu. Jumlah 46 kromosom dalam setiap sel tubuh kita adalah salah satu fakta biologis paling mendasar tentang kemanusiaan.
+        </p>
+
+        <br><br>
+
+        <h2>LINK yang terkait :</h2>
+        <ol>
+            <li><a href="https://id.wikipedia.org/wiki/Tjio_Joe_Hin" target="_blank" rel="noopener noreferrer">https://id.wikipedia.org/wiki/Tjio_Joe_Hin</a></li>
+            <li><a href="https://www.sciencehistory.org/stories/magazine/joe-hin-tjio-counts-chromosomes/" target="_blank" rel="noopener noreferrer">https://www.sciencehistory.org/stories/magazine/joe-hin-tjio-counts-chromosomes/</a></li>
+            <li><a href="https://www.kompasiana.com/anthonytjio0689/6253ab63bb448649cb601a52/doktor-tjio-joe-hin-ilmuwan-anak-bangsa-yang-membenarkan-jumlah-kromosom-manusia" target="_blank" rel="noopener noreferrer">https://www.kompasiana.com/anthonytjio0689/6253ab63bb448649cb601a52/doktor-tjio-joe-hin-ilmuwan-anak-bangsa-yang-membenarkan-jumlah-kromosom-manusia</a></li>
+            <li><a href="https://www.nature.com/scitable/content/The-chromosome-number-in-humans-a-brief-15575/" target="_blank" rel="noopener noreferrer">https://www.nature.com/scitable/content/The-chromosome-number-in-humans-a-brief-15575/</a></li>
+            <li><a href="https://www.sciencehistory.org/stories/disappearing-pod/the-art-of-counting-chromosomes/" target="_blank" rel="noopener noreferrer">https://www.sciencehistory.org/stories/disappearing-pod/the-art-of-counting-chromosomes/</a></li>
+            <li><a href="https://www.youtube.com/watch?v=yRqaEHpWbpk" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=yRqaEHpWbpk</a></li>
+        </ol>
+    </div>
+
+    <script>
+        function showKnowledge() {
+            document.getElementById('initialView').style.display = 'none';
+            document.getElementById('detailView').style.display = 'block';
+        }
+
+        function showInitialScreen() {
+            document.getElementById('detailView').style.display = 'none';
+            document.getElementById('initialView').style.display = 'flex';
+        }
+    </script>
+
+</body>
+</html>
